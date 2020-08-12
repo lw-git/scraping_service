@@ -11,7 +11,19 @@
                 <small>{{obj.timestamp}}</small></p>
         </div>
     </div>
+     {% empty %}
+         <h3 class="col-md-8 mx-auto">К сожалению, по Вашему запросу ничего не найдено.</h3>
     {% endfor %}
+<div class="row">
+    <div class="col-md-4 mx-auto">
+        <form method="GET" action="">
+            <div class="form-group">
+            {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
 
 
