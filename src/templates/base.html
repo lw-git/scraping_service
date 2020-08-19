@@ -19,17 +19,17 @@
 
           {% if user.is_authenticated %}
               <li class="nav-item">
-              <a class="nav-link" href=" ">Выйти</a>
+              <a class="nav-link" href="{% url 'accounts:logout' %} ">Выйти</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href=" ">Профиль</a>
             </li>
           {% else %}
             <li class="nav-item">
-              <a class="nav-link" href="">Войти</a>
+              <a class="nav-link" href="{% url 'accounts:login' %}">Войти</a>
             </li>
           <li class="nav-item">
-              <a class="nav-link" href="">Регистрация</a>
+              <a class="nav-link" href="{% url 'accounts:register' %}">Регистрация</a>
             </li>
           {% endif %}
 
