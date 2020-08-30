@@ -33,9 +33,15 @@
                             </li>
                       {% endif %}
                       {% for page in object_list.paginator.page_range %}
-                          <li class="page-item {% if page == object_list.number %} active {% endif %}">
+                          {% if page == object_list.number %}
+                          <li class="page-item active">
                               <a class="page-link" href="?city={{city}}&language={{ language }}&page={{page}}">{{page}}</a>
                           </li>
+                          {% elif page > object_list.number|add:-3 and page < object_list.number|add:3 %}
+                          <li class="page-item">
+                              <a class="page-link" href="?city={{city}}&language={{ language }}&page={{page}}">{{page}}</a>
+                          </li>
+                          {% endif %}
                       {% endfor %}
                       {% if object_list.has_next %}
                         <li class="page-item">
@@ -51,7 +57,6 @@
 {% else %}
         <h3 class="my-4 text-center">К сожалению, по Вашему запросу, ничего не найдено.</h3>
 {% endif %}
-{{ page_obj }}
 <div class="row ">
     <div class="col-md-6 mx-auto my-3">
         <h4 class="my-4 text-center">Новый поиск</h4>
