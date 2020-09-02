@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, \
+    DeleteView
 from .models import Vacancy
 from .forms import FindForm, VForm
 
@@ -89,3 +91,13 @@ class VUpdate(UpdateView):
     form_class = VForm
     template_name = 'scraping/create.html'
     success_url = reverse_lazy('home')
+
+
+class VDelete(DeleteView):
+    model = Vacancy
+    # template_name = 'scraping/delete.html'
+    success_url = reverse_lazy('home')
+
+    def get(self, request, *args, **kwargs):
+        messages.success(request, 'Запись успешно удалена.')
+        return self.post(request, *args, **kwargs)
